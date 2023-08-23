@@ -1,0 +1,172 @@
+{
+    "swagger": "2.0",
+    "info":{
+        "version": "1.0.0",
+        "title": "Paninaro Next",
+        "description": "Applicazione per gestione dinamica dei prezzi nella ristorazione",
+        "license":{
+            "name": "T13"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "definitions": {
+        "Clienti":{
+            "required": ["nr_conto", "conto"],
+            "properties":{
+                "nr_conto": {
+                    "type": "integer"
+                },
+                "conto": {
+                    "type": "integer"
+                }
+            }
+        },
+        "Ingredienti":{
+            "required": ["nome", "prezzo"],
+            "properties":{
+                "nome": {
+                    "type": "string"
+                },
+                "prezzo": {
+                    "type": "integer"
+                }
+            }
+        }
+    },
+    "paths": {
+        "/cliente":{
+            "get":{
+                "tags":["Clienti"],
+                "summary": "Mostra tutti i clienti",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Clienti"
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags":["Clienti"],
+                "summary": "Inserisci un nuovo cliente",
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Clienti"
+                        }
+                    }
+                }
+            },
+            "patch":{
+                "tags":["Clienti"],
+                "summary": "Modifica conto cliente",
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Clienti"
+                        }
+                    }
+                }
+            }
+        },
+        "/cliente/:nr_conto": {
+            "get":{
+                "tags":["Clienti"],
+                "summary": "Mostra il cliente con tale nr_ordine",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Clienti"
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags":["Clienti"],
+                "summary": "Elimina il cliente con tale nr_ordine",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Clienti"
+                        }
+                    }
+                }
+            }
+        },
+        "/ingrediente":{
+            "get":{
+                "tags":["Ingredienti"],
+                "summary": "Mostra tutti gli ingredienti",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Ingredienti"
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags":["Ingredienti"],
+                "summary": "Inserisci un nuovo ingrediente",
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Ingredienti"
+                        }
+                    }
+                }
+            },
+            "patch":{
+                "tags":["Ingredienti"],
+                "summary": "Modifica prezzo ingrediente",
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Ingredienti"
+                        }
+                    }
+                }
+            }
+        },
+        "/ingrediente/:nome": {
+            "get":{
+                "tags":["Ingredienti"],
+                "summary": "Mostra l'ingrediente con tale nome",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Ingredienti"
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags":["Ingredienti"],
+                "summary": "Elimina l'ingrediente con tale nome",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Ingredienti"
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
