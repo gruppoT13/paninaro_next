@@ -8,12 +8,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const routes = require('./routes/ingrediente');
 const routes2 = require('./routes/cliente');
+const routes3 = require('./routes/gestore');
 const mongoose = require ( 'mongoose' );
 mongoose.set('strictQuery', true);
 
 app.use(express.json());
 app.use('/', routes);
 app.use('/', routes2);
+app.use('/', routes3);
 
 app.use('/', express.static(process.env.FRONTEND));
 

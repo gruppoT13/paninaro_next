@@ -1,3 +1,4 @@
+
 function show_Ingredienti(){
     fetch('/ingrediente', 
     {
@@ -17,7 +18,6 @@ function show_Ingredienti(){
 function add_ingrediente(){
     var nome=document.getElementById("nome").value;
     var prezzo=document.getElementById("prezzo").value;
-
     fetch('/ingrediente',
     {
         method: "POST",
@@ -25,8 +25,22 @@ function add_ingrediente(){
         body: JSON.stringify({ nome: nome, prezzo: prezzo})
     })
     .then(show_Ingredienti())
-    .catch(error => console.error(error));
-    alert("Ingrediente aggiunto.");
+
+    .then(response => response.json()) // Parse the response JSON
+    .then(result => {
+        if (result.message) {
+            alert(result.message); // Show the message from the server
+        } else {
+            alert("Ingrediente added successfully."); // Good result
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert("An error occurred."); // Bad result
+    });
+    
+    
+    
 }
 
 function edit_prezzo_ingrediente(){
@@ -40,6 +54,42 @@ function edit_prezzo_ingrediente(){
         body: JSON.stringify({ nome: nome, prezzo: prezzo})
     })
     .then(show_Ingredienti())
-    .catch(error => console.error(error));
-    alert("Ingrediente modificato.");
+
+    .then(response => response.json())
+    .then(result => {
+        if (result.message) {
+            alert(result.message); // Show the message from the server
+        } else {
+            alert("Ingrediente modificato."); // Good result
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert("An error occurred."); // Bad result
+    });
+}
+
+function logIn(){
+    var admin=document.getElementById("admin").value;
+    var password=document.getElementById("password").value;
+
+    fetch('/gestore',
+    {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ admin: admin, password: password})
+    })
+    .then((response) => response.json())
+    .then(result => {
+        if (result.message) {
+            alert(result.message); // Show the message from the server
+        } else {
+            alert("Accesso."); // Good result
+            window.open("gestore_page.html"); 
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        alert("Accesso Negato."); // Bad result
+    });
 }

@@ -2,14 +2,10 @@
 <html>
 <head><script src="script.js"></script></head>
 <body>
-<h2>INGREDIENTI:</h2> <p id="ingredienti"></p>
-<button type="button" onclick="show_Ingredienti()">Mostra ingredienti</button><br><br>
-<h2>Inserisci i dati e seleziona un pulsante:</h2>
-<form action="/ingrediente" method="post" name="form_ingrediente" id="form_ingrediente">
-    <span>Nome: </span><input type="text" name="nome" id="nome"/><br><br>
-    <span>Prezzo: </span><input type="number" min="0" step="0.01" name="prezzo" id="prezzo"/><br><br>
-    <button type="button" onclick="add_ingrediente()">Inserisci ingrediente</button>
-    <button type="button" onclick="edit_prezzo_ingrediente()">Modifica prezzo ingrediente</button>
+<form action="/gestore" method="post" name="form_logIn" id="form_logIn">
+    <span>Utente: </span><input type="text" name="admin" id="admin"/><br><br>
+    <span>Password: </span><input type="text" name="password" id="password"/><br><br>
+    <button type="button" onclick="logIn()">LogIn</button>
 </form>
 </body>
 </html>
