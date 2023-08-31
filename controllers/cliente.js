@@ -1,10 +1,10 @@
 const Clienti = require('../models/cliente');
 
-// DELETE '/cliente/nr_conto'
+// DELETE '/cliente/nr_ordine'
 const delete_cliente = (req, res) => {
     
-    let input_nr_conto = parseInt(req.params.nr_conto); //get the ingrediente name
-    var query = { nr_conto: input_nr_conto };
+    let input_nr_ordine = parseInt(req.params.nr_ordine); //get the ingrediente name
+    var query = { nr_ordine: input_nr_ordine };
 
     Clienti.deleteOne(query, (err) => {
         if (err) {
@@ -28,10 +28,10 @@ const show_Clienti = (req, res) => {
     });
 }
 
-// GET '/cliente/nr_conto'
+// GET '/cliente/nr_ordine'
 const show_Conto = (req, res) => {
-    let input_nr_conto = parseInt(req.params.nr_conto); //get the ingrediente name
-    var query = { nr_conto: input_nr_conto };
+    let input_nr_ordine = parseInt(req.params.nr_ordine); //get the ingrediente name
+    var query = { nr_ordine: input_nr_ordine };
     
     //find the specific cliente with that number
     Clienti.findOne(query, (err, data) => {
@@ -45,12 +45,12 @@ const show_Conto = (req, res) => {
 // POST '/cliente'
 const add_cliente = (req, res) => {
     //check if the cliente name already exists in db
-    Clienti.findOne({ nr_conto: req.body.nr_conto }, (err, data) => {
+    Clienti.findOne({ nr_ordine: req.body.nr_ordine }, (err, data) => {
         //if ingr. not in db, add it
         if (!data) {
             //create a new cliente object using the Ingrediente model and req.body
             const newCliente = new Clienti({
-                nr_conto: req.body.nr_conto,
+                nr_ordine: req.body.nr_ordine,
                 conto: req.body.conto,
             })
 
@@ -69,16 +69,16 @@ const add_cliente = (req, res) => {
 
 // PATCH '/cliente'
 const edit_conto_cliente = (req, res) => {
-    let input_nr_conto = req.body.nr_conto; //get the conto number
+    let input_nr_ordine = req.body.nr_ordine; //get the conto number
     let input_conto = req.body.conto; //get the ingrediente name
 
     //find the specific ingrediente with that name
-    Clienti.findOne({ nr_conto: input_nr_conto }, (err, data) => {
+    Clienti.findOne({ nr_ordine: input_nr_ordine }, (err, data) => {
         if (err || !data) {
             return res.json({ message: "Cliente doesn't exist." });
         }
         else{
-            Clienti.replaceOne({ nr_conto: input_nr_conto }, { conto: input_conto, nr_conto: input_nr_conto }, (err, data) => {
+            Clienti.replaceOne({ nr_ordine: input_nr_ordine }, { conto: input_conto, nr_ordine: input_nr_ordine }, (err, data) => {
             if (err || !data) {
                     return res.json({ message: "Something went wrong, please try again." });
             }else{
