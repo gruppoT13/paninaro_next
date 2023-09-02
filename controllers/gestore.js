@@ -1,20 +1,10 @@
-const Gestori = require('../models/gestore');
+const express = require('express');
+const ges_ctrl = require('../controllers/gestore');
+const router_2 = express.Router();
 
-// POST '/gestore'
-const get_gestore = (req, res) => {
-    let input_admin = String(req.body.admin);
-    let input_password = String(req.body.password);
-    Gestori.find({admin: input_admin, password: input_password}, (err, data) => {
-        
-        if (err || !data || JSON.stringify(data)=="[]") { 
-            return res.status(401).send("Unauthorized");
-        }
-        else{
-            return res.status(200).send(data); //return the gestore objects if found
-        }
-    });
-};
+const multer = require('multer');
+const upload = multer();
 
-module.exports = { 
-    get_gestore
-}
+router_2.post('/gestore', upload.none(), ges_ctrl.get_gestore);
+
+module.exports = router_2;
